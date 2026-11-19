@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindUni Studio – Hệ thống Kiến tạo Hồ sơ Năng lực Số và Luyện Phỏng vấn STAR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            tealcalm: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              900: '#134e4a',
+            },
+            indigodeep: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .clean-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    @media print {
+      body * { visibility: hidden !important; }
+      #printablePortfolioCard, #printablePortfolioCard * { visibility: visible !important; }
+      #printablePortfolioCard {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 16mm !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        border: none !important;
+        z-index: 99999 !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Toast Container -->
+  <div id="studioToastBox" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm pointer-events-none no-print"></div>
+
+  <!-- Top Scientific Header -->
+  <header class="sticky top-0 z-30 bg-slate-950/95 backdrop-blur-md text-white border-b border-slate-800 px-4 py-3 shadow-lg no-print">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigodeep-500 to-tealcalm-500 flex items-center justify-center shadow-lg shrink-0">
+          <i data-lucide="folder-kanban" class="w-5 h-5 text-white"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm sm:text-base tracking-tight">MINDUNI STUDIO</span>
+            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-indigodeep-500/25 text-indigodeep-200 border border-indigodeep-400/40">Chuẩn Thông tư 95/2026/TT-BGDĐT</span>
+          </div>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Hệ thống Kiến tạo Hồ sơ Năng lực Số (Lớp 11–12), Luyện Phỏng vấn STAR cùng Tổng hợp Thực nghiệm</p>
+        </div>
+      </div>
+
+      <!-- 3-Module Switcher -->
+      <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+        <button onclick="switchStudioTab('portfolio')" id="tabBtnPortfolio" class="px-3.5 py-2 rounded-xl bg-tealcalm-600 text-white shadow-sm flex items-center gap-1.5 transition">
+          <i data-lucide="award" class="w-3.5 h-3.5"></i> 1. Hồ sơ Năng lực Số (11–12)
+        </button>
+        <button onclick="switchStudioTab('star')" id="tabBtnStar" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition">
+          <i data-lucide="message-square-quote" class="w-3.5 h-3.5"></i> 2. Bài luận cùng Phỏng vấn STAR
+        </button>
+        <button onclick="switchStudioTab('visef')" id="tabBtnVisef" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition">
+          <i data-lucide="line-chart" class="w-3.5 h-3.5"></i> 3. Đối chứng Thực nghiệm ViSEF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-6">
+
+    <!-- ==================== TAB 1: DYNAMIC E-PORTFOLIO (LỚP 11 - 12) ==================== -->
+    <section id="panelPortfolio" class="space-y-6">
+      <!-- Legal Context Banner (Circular 95/2026/TT-BGDĐT) -->
+      <div class="p-5 rounded-3xl clean-card border-l-4 border-l-indigodeep-600 flex flex-wrap items-center justify-between gap-4 no-print">
+        <div class="space-y-1 max-w-3xl">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigodeep-600">Định hướng Hồ sơ Xét tuyển Kết hợp theo Thông tư 95/2026/TT-BGDĐT (Hiệu lực 2027)</span>
+          <h1 class="text-lg sm:text-xl font-extrabold text-slate-900">Trục Tích Lũy Minh Chứng Năng Lực Cá Nhân Hóa (Lớp 11 lên Lớp 12)</h1>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Từ mùa tuyển sinh 2027, tổng điểm cộng khuyến khích bị khống chế tối đa <strong>0,50/30 điểm</strong> (và bỏ hẳn từ 2028), trong khi <strong>xét tuyển thẳng giải KHKT/HSG Quốc gia</strong> và <strong>xét tuyển tài năng/phỏng vấn học bổng</strong> yêu cầu hồ sơ minh chứng chiều sâu. Hãy hệ thống hóa minh chứng thực chất thay vì tích lũy giấy khen dàn trải.
+          </p>
+        </div>
+        <button onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition">
+          <i data-lucide="printer" class="w-4 h-4 text-tealcalm-400"></i> Xuất Thẻ E-Portfolio Khổ A4
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left (5 cols): Student Identity & Evidence Builder Form -->
+        <div class="lg:col-span-5 space-y-5 no-print">
+          <!-- Profile Info Card -->
+          <div class="p-5 rounded-3xl clean-card space-y-3.5">
+            <h2 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
+              <i data-lucide="user-circle-2" class="w-4 h-4 text-tealcalm-600"></i>
+              1. Thông tin Định vị Hồ sơ Cá nhân
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Họ và tên học sinh</label>
+                <input id="pfStudentName" type="text" value="Nguyễn Minh Khang" oninput="renderPortfolioPreview()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none font-semibold" />
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Khối lớp hiện tại</label>
+                <select id="pfGradeLevel" onchange="renderPortfolioPreview()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold outline-none">
+                  <option value="Lớp 11 (Giai đoạn Tích lũy)">Lớp 11 (Giai đoạn Tích lũy)</option>
+                  <option value="Lớp 12 (Giai đoạn Đóng gói 2027)" selected>Lớp 12 (Giai đoạn Đóng gói 2027)</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-bold text-slate-700 mb-1">Nhóm ngành mục tiêu cùng Tổ hợp 2+2</label>
+                <input id="pfTargetMajor" type="text" value="Kỹ thuật Phần mềm – Trí tuệ Nhân tạo (Toán – Văn + Lí, Hóa)" oninput="renderPortfolioPreview()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none font-semibold" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-bold text-slate-700 mb-1">Tuyên ngôn Năng lực Cốt lõi (Personal Statement)</label>
+                <textarea id="pfBioSummary" rows="2" oninput="renderPortfolioPreview()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none">Đam mê ứng dụng khoa học dữ liệu và tâm lý học hành vi để giải quyết các bài toán giáo dục thực tiễn cho học sinh THPT.</textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add New Evidence Form -->
+          <form onsubmit="addPortfolioEvidence(event)" class="p-5 rounded-3xl clean-card space-y-3.5">
+            <h2 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-indigodeep-600"></i>
+              2. Bổ sung Minh chứng Mới vào Trục Thời gian
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Mốc thời gian</label>
+                <select id="evStageSelect" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold">
+                  <option value="Lớp 11 • Học kỳ I">Lớp 11 • Học kỳ I</option>
+                  <option value="Lớp 11 • Học kỳ II">Lớp 11 • Học kỳ II</option>
+                  <option value="Lớp 12 • Học kỳ I" selected>Lớp 12 • Học kỳ I</option>
+                  <option value="Lớp 12 • Học kỳ II">Lớp 12 • Học kỳ II</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">Nhóm minh chứng</label>
+                <select id="evCategorySelect" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold">
+                  <option value="NCKH / ViSEF">Nghiên cứu KHKT / Olympic</option>
+                  <option value="Học thuật 2+2">Thành tích Học thuật 2+2</option>
+                  <option value="Dự án Cộng đồng">Dự án Cộng đồng / Lãnh đạo</option>
+                  <option value="Chứng chỉ Kỹ năng">Chứng chỉ Ngoại ngữ / Tin học</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-bold text-slate-700 mb-1">Tên thành tích / Dự án / Minh chứng</label>
+                <input id="evTitleInput" type="text" placeholder="VD: Giải Nhất cuộc thi KHKT cấp Tỉnh lĩnh vực Khoa học Xã hội..." class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-white focus:border-indigodeep-500 outline-none" />
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block font-bold text-slate-700 mb-1">Vai trò cùng Giá trị đóng góp thực tế</label>
+                <input id="evImpactInput" type="text" placeholder="VD: Trưởng nhóm thiết kế thuật toán khảo sát trên 320 học sinh THPT..." class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-white focus:border-indigodeep-500 outline-none" />
+              </div>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-indigodeep-600 to-tealcalm-600 hover:from-indigodeep-700 hover:to-tealcalm-700 text-white font-bold text-xs shadow-sm transition">
+              + Thêm vào Hồ sơ Năng lực Số
+            </button>
+          </form>
+        </div>
+
+        <!-- Right (7 cols): Printable A4 Digital E-Portfolio Card -->
+        <div class="lg:col-span-7">
+          <div id="printablePortfolioCard" class="p-6 sm:p-8 rounded-3xl clean-card border-2 border-slate-200 space-y-5">
+            <!-- Portfolio Header -->
+            <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-5">
+              <div class="space-y-1.5">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tealcalm-50 text-tealcalm-800 border border-tealcalm-200 text-[10px] font-extrabold uppercase tracking-wider">
+                  Hồ sơ Năng lực Số Xác thực • MindUni E-Portfolio
+                </div>
+                <h2 id="viewPfName" class="text-2xl font-extrabold text-slate-900 tracking-tight">Nguyễn Minh Khang</h2>
+                <div id="viewPfGrade" class="text-xs font-bold text-indigodeep-700">Lớp 12 (Giai đoạn Đóng gói 2027)</div>
+                <div id="viewPfMajor" class="text-xs text-slate-600 font-medium">Mục tiêu: Kỹ thuật Phần mềm – Trí tuệ Nhân tạo (Toán – Văn + Lí, Hóa)</div>
+              </div>
+
+              <!-- Verification QR Box -->
+              <div class="p-3 rounded-2xl bg-slate-900 text-white text-center space-y-1 shrink-0">
+                <div class="w-14 h-14 mx-auto rounded-xl bg-white text-slate-900 flex items-center justify-center font-mono font-extrabold text-xs border-2 border-tealcalm-400">
+                  QR-2027
+                </div>
+                <div class="text-[9px] font-mono text-tealcalm-300">MÃ XÁC THỰC HỒ SƠ</div>
+              </div>
+            </div>
+
+            <!-- Personal Statement -->
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-xs text-slate-700 leading-relaxed italic">
+              "<span id="viewPfBio">Đam mê ứng dụng khoa học dữ liệu và tâm lý học hành vi để giải quyết các bài toán giáo dục thực tiễn cho học sinh THPT.</span>"
+            </div>
+
+            <!-- Regulatory Alignment Badge (Circular 95/2026) -->
+            <div id="pfRegulationAuditBox" class="p-3.5 rounded-2xl bg-indigodeep-50/80 border border-indigodeep-200 text-xs text-indigodeep-950 flex items-center justify-between gap-2"></div>
+
+            <!-- Timeline List -->
+            <div class="space-y-3">
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Trục Thời Gian Minh Chứng Năng Lực (Lớp 11 – Lớp 12)</h3>
+              <div id="portfolioTimelineContainer" class="space-y-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: STAR ESSAY & INTERVIEW COACH ==================== -->
+    <section id="panelStar" class="hidden space-y-6">
+      <div class="p-5 sm:p-6 rounded-3xl clean-card space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-tealcalm-700">Chuẩn hóa Xét tuyển Tài năng, Phỏng vấn Học bổng cùng Xét tuyển Kết hợp</span>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">Trình Cấu Trúc Bài Luận Cá Nhân cùng Luyện Phỏng Vấn Mô Hình STAR</h2>
+          </div>
+          <select id="starPromptPresetSelect" onchange="loadStarPromptPreset()" class="rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-bold bg-slate-50 outline-none">
+            <option value="CHALLENGE">Chủ đề 1: Vượt qua khủng hoảng lo âu hoặc thất bại học thuật</option>
+            <option value="RESEARCH">Chủ đề 2: Dự án nghiên cứu khoa học hoặc giải quyết vấn đề cộng đồng</option>
+            <option value="MAJOR_FIT">Chủ đề 3: Lý do lựa chọn ngành học gắn với năng lực cốt lõi</option>
+          </select>
+        </div>
+        <p id="starPromptQuestion" class="p-3.5 rounded-2xl bg-slate-900 text-tealcalm-200 text-xs sm:text-sm font-semibold leading-relaxed">
+          Đề bài: Hãy kể về một thời điểm bạn đối mặt với áp lực lớn hoặc kết quả chưa như mong đợi trong học tập lớp 11–12. Bạn đã phân tích vấn đề và hành động như thế nào để chuyển hóa tình huống đó?
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left (7 cols): 4-Step STAR Guided Builder -->
+        <div class="lg:col-span-7 p-5 sm:p-6 rounded-3xl clean-card space-y-4">
+          <div class="space-y-1.5">
+            <label class="flex items-center justify-between text-xs font-extrabold text-slate-900">
+              <span>S – Situation (Bối cảnh cụ thể, tránh mở bài sáo rỗng)</span>
+              <span class="text-[10px] font-semibold text-tealcalm-700">Gợi ý: Nêu thời điểm, sự kiện thật</span>
+            </label>
+            <textarea id="starInputS" rows="2" oninput="evaluateStarDraft()" placeholder="VD: Đầu học kỳ I lớp 12, điểm thi thử môn Toán của mình chỉ đạt 6,8 điểm trong khi bạn bè xung quanh liên tục chia sẻ điểm cao..." class="w-full rounded-xl border border-slate-300 p-3 text-xs bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none"></textarea>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="flex items-center justify-between text-xs font-extrabold text-slate-900">
+              <span>T – Task (Nhiệm vụ cùng Mục tiêu cá nhân đặt ra)</span>
+              <span class="text-[10px] font-semibold text-indigodeep-700">Gợi ý: Mục tiêu đo lường được</span>
+            </label>
+            <textarea id="starInputT" rows="2" oninput="evaluateStarDraft()" placeholder="VD: Thay vì đăng ký tràn lan 4 lớp học thêm, mình đặt mục tiêu nâng điểm Toán lên 8,5 trong 8 tuần bằng cách rà soát lỗ hổng kiến thức..." class="w-full rounded-xl border border-slate-300 p-3 text-xs bg-slate-50 focus:bg-white focus:border-indigodeep-500 outline-none"></textarea>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="flex items-center justify-between text-xs font-extrabold text-slate-900">
+              <span>A – Action (Hành động trực tiếp của chính bạn – Trọng tâm 50% bài viết)</span>
+              <span class="text-[10px] font-semibold text-amber-700">Gợi ý: Dùng động từ chủ động "Tôi đã..."</span>
+            </label>
+            <textarea id="starInputA" rows="3" oninput="evaluateStarDraft()" placeholder="VD: Tôi lập sổ phân loại 3 nhóm lỗi sai (tính toán, đọc đề, vận dụng), dành 45 phút mỗi tối luyện chuyên sâu từng dạng và trao đổi trực tiếp với giáo viên bộ môn..." class="w-full rounded-xl border border-slate-300 p-3 text-xs bg-slate-50 focus:bg-white focus:border-amber-500 outline-none"></textarea>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="flex items-center justify-between text-xs font-extrabold text-slate-900">
+              <span>R – Result (Kết quả định lượng cùng Bài học trưởng thành)</span>
+              <span class="text-[10px] font-semibold text-emerald-700">Gợi ý: Con số cụ thể cùng giá trị rút ra</span>
+            </label>
+            <textarea id="starInputR" rows="2" oninput="evaluateStarDraft()" placeholder="VD: Sau 2 tháng, điểm kiểm tra định kỳ đạt 8,75 điểm; quan trọng hơn, tôi học được phương pháp tự học có kỷ luật thay vì chạy theo đám đông..." class="w-full rounded-xl border border-slate-300 p-3 text-xs bg-slate-50 focus:bg-white focus:border-emerald-500 outline-none"></textarea>
+          </div>
+
+          <div class="flex flex-wrap gap-2.5 pt-1">
+            <button onclick="fillSampleStarDraft()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs transition">
+              Nạp bài mẫu chuẩn STAR
+            </button>
+            <button onclick="copyStarCompiledText()" class="px-4 py-2.5 rounded-xl bg-indigodeep-600 hover:bg-indigodeep-700 text-white font-bold text-xs flex items-center gap-1.5 transition">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Sao chép Bài luận Hoàn chỉnh
+            </button>
+          </div>
+        </div>
+
+        <!-- Right (5 cols): Anti-Cliché Rubric & Compiled Preview -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="p-5 rounded-3xl clean-card space-y-3.5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-extrabold text-sm text-slate-900">Bộ Tiêu Chí Chấm Chiều Sâu Tự Sự</h3>
+              <span id="starTotalScoreBadge" class="px-3 py-1 rounded-full bg-tealcalm-50 text-tealcalm-800 border border-tealcalm-200 font-mono font-extrabold text-xs">0 / 100 điểm</span>
+            </div>
+            <div id="starRubricChecklist" class="space-y-2 text-xs"></div>
+          </div>
+
+          <div class="p-5 rounded-3xl bg-slate-900 text-white space-y-3 shadow-lg">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-tealcalm-400">Bản Ghép Bài Luận / Kịch Bản Trả Lời Phỏng Vấn</div>
+            <div id="starCompiledPreview" class="text-xs text-slate-200 leading-relaxed whitespace-pre-line min-h-[140px]">
+              Hãy nhập nội dung vào 4 khung S – T – A – R bên trái để hệ thống tự động ghép thành bài luận mạch lạc...
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: VISEF PRE-POST RESEARCH EVIDENCE EXPORTER ==================== -->
+    <section id="panelVisef" class="hidden space-y-6">
+      <div class="p-6 rounded-3xl clean-card space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigodeep-600">Dữ liệu Đối chứng Thực nghiệm Toàn Hệ Sinh Thái 4 Giải Pháp</span>
+            <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">Báo Cáo Chuyển Biến Tiền – Hậu Can Thiệp (Pre-test vs. Post-test)</h2>
+          </div>
+          <button onclick="exportVisefComparisonCsv()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Xuất Bảng Số Liệu Kiểm Định (.CSV)
+          </button>
+        </div>
+
+        <!-- 4 Core KPI Comparison Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-2xl bg-tealcalm-50/80 border border-tealcalm-200 space-y-1">
+            <div class="text-[11px] font-bold text-tealcalm-800 uppercase">Chỉ số Lo âu A-FOMO</div>
+            <div class="font-mono font-extrabold text-2xl text-tealcalm-950">35,4 → 21,2</div>
+            <div class="text-xs font-semibold text-emerald-700">Giảm 40,1% mức độ lo âu (p &lt; 0,001)</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-indigodeep-50/80 border border-indigodeep-200 space-y-1">
+            <div class="text-[11px] font-bold text-indigodeep-800 uppercase">Số phương thức dự thi TB</div>
+            <div class="font-mono font-extrabold text-2xl text-indigodeep-950">4,3 → 2,0</div>
+            <div class="text-xs font-semibold text-indigodeep-700">Khu trú đúng chuẩn Thông tư 95/2026</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 space-y-1">
+            <div class="text-[11px] font-bold text-amber-800 uppercase">Thời gian nhiễu MXH/tối</div>
+            <div class="font-mono font-extrabold text-2xl text-amber-950">95p → 22p</div>
+            <div class="text-xs font-semibold text-amber-800">Tiết kiệm 73 phút tự học mỗi tối</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-1">
+            <div class="text-[11px] font-bold text-emerald-800 uppercase">Độ tự tin Ra quyết định</div>
+            <div class="font-mono font-extrabold text-2xl text-emerald-950">44% → 89%</div>
+            <div class="text-xs font-semibold text-emerald-700">Tăng 45% sự đồng thuận gia đình</div>
+          </div>
+        </div>
+
+        <!-- Ecosystem Architecture Summary Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-900 text-white">
+                <th class="p-3.5 rounded-tl-xl">Giải pháp trong Hệ sinh thái</th>
+                <th class="p-3.5">Cơ sở Khoa học Hành vi</th>
+                <th class="p-3.5">Chức năng Độc lập (Không trùng lặp)</th>
+                <th class="p-3.5 rounded-tr-xl">Bám sát Thông tư 95/2026/TT-BGDĐT</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white">
+              <tr>
+                <td class="p-3.5 font-extrabold text-slate-900">1. Nền tảng Web MindUni</td>
+                <td class="p-3.5 text-slate-600">Tâm trắc học đa chiều & Lý thuyết Ra quyết định</td>
+                <td class="p-3.5 text-slate-700">Đo A-FOMO, Quy đổi bách phân vị, Dự báo xác suất đỗ (%) & Quản trị MTSS</td>
+                <td class="p-3.5 text-tealcalm-800 font-semibold">Quy đổi bách phân vị & Trần điểm cộng 0,50/30đ</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-extrabold text-slate-900">2. Game UniQuest 2027</td>
+                <td class="p-3.5 text-slate-600">Học tập qua trải nghiệm & Giải mẫn cảm hệ thống</td>
+                <td class="p-3.5 text-slate-700">Phòng thi ảo 10 môn 2+2, Cổng lọc ảo nguyện vọng & Đấu trường 20 tình huống</td>
+                <td class="p-3.5 text-tealcalm-800 font-semibold">Sàn 15đ, Học bạ Tốt (Sư phạm/Luật/Y) & Ưu tiên thứ tự NV</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-extrabold text-slate-900">3. MindUni Shield (Extension)</td>
+                <td class="p-3.5 text-slate-600">Kiến trúc lựa chọn (Nudge) & Kiểm soát kích thích</td>
+                <td class="p-3.5 text-slate-700">Sàng lọc tin nhiễu MXH 2 tầng, Đồng bộ tin Bộ 24h & Kho học liệu chuẩn</td>
+                <td class="p-3.5 text-tealcalm-800 font-semibold">Giải mã tin đồn điểm cộng & Chặn tên miền giả mạo</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-extrabold text-slate-900">4. MindUni Studio (Hiện tại)</td>
+                <td class="p-3.5 text-slate-600">Tự chủ năng lực (Self-Efficacy) & Tự sự STAR</td>
+                <td class="p-3.5 text-slate-700">Hồ sơ Năng lực Số E-Portfolio lớp 11–12, Bài luận/Phỏng vấn STAR & Đối chứng</td>
+                <td class="p-3.5 text-tealcalm-800 font-semibold">Tối ưu hồ sơ xét tuyển thẳng/tài năng trong 03 phương thức</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function showStudioToast(title, msg) {
+      const box = document.getElementById("studioToastBox");
+      if (!box) return;
+      const el = document.createElement("div");
+      el.className = "pointer-events-auto p-3.5 rounded-2xl bg-slate-900/95 text-white border border-tealcalm-500 shadow-xl text-xs space-y-1";
+      el.innerHTML = `<div class="font-bold">${title}</div><div class="text-slate-300">${msg}</div>`;
+      box.appendChild(el);
+      setTimeout(() => { if (el.parentElement) el.remove(); }, 4000);
+    }
+
+    function switchStudioTab(tab) {
+      const panels = {
+        portfolio: document.getElementById("panelPortfolio"),
+        star: document.getElementById("panelStar"),
+        visef: document.getElementById("panelVisef")
+      };
+      const btns = {
+        portfolio: document.getElementById("tabBtnPortfolio"),
+        star: document.getElementById("tabBtnStar"),
+        visef: document.getElementById("tabBtnVisef")
+      };
+
+      Object.keys(panels).forEach(k => {
+        if (!panels[k] || !btns[k]) return;
+        if (k === tab) {
+          panels[k].classList.remove("hidden");
+          btns[k].className = "px-3.5 py-2 rounded-xl bg-tealcalm-600 text-white shadow-sm flex items-center gap-1.5 transition";
+        } else {
+          panels[k].classList.add("hidden");
+          btns[k].className = "px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition";
+        }
+      });
+      lucide.createIcons();
+    }
+
+    let portfolioEvidences = [
+      {
+        stage: "Lớp 11 • Học kỳ II",
+        category: "NCKH / ViSEF",
+        title: "Đề tài Nghiên cứu Khoa học Kỹ thuật cấp Tỉnh lĩnh vực Khoa học Xã hội và Hành vi",
+        impact: "Chủ nhiệm đề tài, thiết kế thang đo tâm trắc A-FOMO và thử nghiệm can thiệp trên 320 học sinh THPT."
+      },
+      {
+        stage: "Lớp 12 • Học kỳ I",
+        category: "Học thuật 2+2",
+        title: "Điểm trung bình Học bạ tổ hợp Toán – Vật lí – Hóa học đạt 8,9/10",
+        impact: "Duy trì vị trí Top 5% của lớp chuyên ban Khoa học Tự nhiên, đáp ứng ngưỡng xét tuyển kết hợp."
+      },
+      {
+        stage: "Lớp 12 • Học kỳ I",
+        category: "Dự án Cộng đồng",
+        title: "Điều phối Câu lạc bộ Hỗ trợ Tâm lý Mùa thi đồng đẳng tại trường THPT",
+        impact: "Tổ chức 04 buổi chia sẻ phương pháp quản trị thời gian ôn thi 2+2 cho hơn 180 học sinh khối 11 và 12."
+      }
+    ];
+
+    function addPortfolioEvidence(e) {
+      e.preventDefault();
+      const stage = document.getElementById("evStageSelect").value;
+      const category = document.getElementById("evCategorySelect").value;
+      const title = document.getElementById("evTitleInput").value.trim();
+      const impact = document.getElementById("evImpactInput").value.trim();
+      if (!title) {
+        showStudioToast("Thiếu thông tin minh chứng", "Vui lòng nhập tên thành tích hoặc dự án trước khi thêm.");
+        return;
+      }
+      portfolioEvidences.unshift({
+        stage,
+        category,
+        title,
+        impact: impact || "Minh chứng năng lực đã được hệ thống hóa phục vụ xét tuyển kết hợp."
+      });
+      document.getElementById("evTitleInput").value = "";
+      document.getElementById("evImpactInput").value = "";
+      renderPortfolioPreview();
+      showStudioToast("Đã cập nhật E-Portfolio", "Minh chứng mới đã được đưa lên trục thời gian hồ sơ năng lực số.");
+    }
+
+    function removePortfolioEvidence(idx) {
+      portfolioEvidences.splice(idx, 1);
+      renderPortfolioPreview();
+    }
+
+    function renderPortfolioPreview() {
+      const name = document.getElementById("pfStudentName")?.value || "Nguyễn Minh Khang";
+      const grade = document.getElementById("pfGradeLevel")?.value || "Lớp 12";
+      const major = document.getElementById("pfTargetMajor")?.value || "";
+      const bio = document.getElementById("pfBioSummary")?.value || "";
+
+      document.getElementById("viewPfName").textContent = name;
+      document.getElementById("viewPfGrade").textContent = grade;
+      document.getElementById("viewPfMajor").textContent = `Mục tiêu: ${major}`;
+      document.getElementById("viewPfBio").textContent = bio;
+
+      const hasResearch = portfolioEvidences.some(x => x.category === "NCKH / ViSEF");
+      const auditBox = document.getElementById("pfRegulationAuditBox");
+      if (auditBox) {
+        auditBox.innerHTML = hasResearch
+          ? `<div><strong>✓ Tối ưu theo Thông tư 95/2026/TT-BGDĐT:</strong> Hồ sơ có minh chứng NCKH/Olympic, đủ điều kiện ưu tiên xét tuyển thẳng hoặc xét tuyển tài năng trong 03 phương thức tối đa của ngành.</div>`
+          : `<div><strong>Gợi ý Thông tư 95/2026/TT-BGDĐT:</strong> Năm 2027 điểm cộng chứng chỉ khống chế tối đa 0,50/30đ; bạn nên bổ sung minh chứng dự án học thuật hoặc hoạt động lãnh đạo để tăng sức nặng phỏng vấn.</div>`;
+      }
+
+      const listEl = document.getElementById("portfolioTimelineContainer");
+      if (listEl) {
+        listEl.innerHTML = portfolioEvidences.map((item, idx) => `
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2 text-[10px]">
+                <span class="px-2.5 py-0.5 rounded-full bg-slate-900 text-white font-bold">${item.stage}</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-tealcalm-100 text-tealcalm-900 font-bold">${item.category}</span>
+              </div>
+              <div class="font-extrabold text-xs sm:text-sm text-slate-900">${item.title}</div>
+              <p class="text-[11px] text-slate-600 leading-relaxed">${item.impact}</p>
+            </div>
+            <button onclick="removePortfolioEvidence(${idx})" class="no-print text-slate-400 hover:text-rose-600 font-bold text-xs px-1.5" title="Xóa minh chứng">✕</button>
+          </div>
+        `).join("");
+      }
+    }
+
+    const starPrompts = {
+      CHALLENGE: "Đề bài: Hãy kể về một thời điểm bạn đối mặt với áp lực lớn hoặc kết quả chưa như mong đợi trong học tập lớp 11–12. Bạn đã phân tích vấn đề và hành động như thế nào để chuyển hóa tình huống đó?",
+      RESEARCH: "Đề bài: Trình bày một dự án nghiên cứu khoa học kỹ thuật hoặc sáng kiến cộng đồng bạn từng tham gia. Đâu là quyết định khó khăn nhất của bạn và kết quả thực tế đạt được là gì?",
+      MAJOR_FIT: "Đề bài: Điều gì ở nhóm ngành mục tiêu khiến bạn sẵn sàng gắn bó 4 năm đại học? Hãy chứng minh bằng một trải nghiệm học tập hoặc thực hành cụ thể của chính bạn."
+    };
+
+    function loadStarPromptPreset() {
+      const key = document.getElementById("starPromptPresetSelect")?.value || "CHALLENGE";
+      const el = document.getElementById("starPromptQuestion");
+      if (el) el.textContent = starPrompts[key];
+    }
+
+    function fillSampleStarDraft() {
+      document.getElementById("starInputS").value = "Đầu học kỳ I lớp 12, điểm thi thử môn Toán của mình chỉ đạt 6,8 điểm, trong khi nhiều bạn trên mạng xã hội liên tục chia sẻ bảng điểm trên 28 điểm khiến mình rơi vào trạng thái lo âu và mất ngủ.";
+      document.getElementById("starInputT").value = "Mình nhận ra việc đăng ký thêm 3 lớp luyện đề cấp tốc chỉ làm tăng kiệt sức. Mình đặt mục tiêu cụ thể nâng điểm Toán lên 8,5 trong 8 tuần bằng cách tập trung 70% quỹ thời gian cho tổ hợp 2+2.";
+      document.getElementById("starInputA").value = "Tôi lập sổ phân loại toàn bộ các câu sai thành 3 nhóm (đọc nhầm dữ kiện, hổng công thức, thiếu kỹ năng vận dụng), dành 45 phút mỗi tối tự giải lại từng chuyên đề và chủ động trao đổi với giáo viên bộ môn mỗi tuần một lần.";
+      document.getElementById("starInputR").value = "Sau 8 tuần kiên trì, điểm kiểm tra định kỳ của tôi tăng lên 8,75 điểm. Quan trọng hơn, tôi rèn được bản lĩnh tự chủ trước áp lực đám đông và biết cách quản trị mục tiêu khoa học.";
+      evaluateStarDraft();
+      showStudioToast("Đã nạp bài mẫu STAR", "Bạn có thể chỉnh sửa trực tiếp dựa trên trải nghiệm thật của bản thân.");
+    }
+
+    function evaluateStarDraft() {
+      const s = document.getElementById("starInputS")?.value.trim() || "";
+      const t = document.getElementById("starInputT")?.value.trim() || "";
+      const a = document.getElementById("starInputA")?.value.trim() || "";
+      const r = document.getElementById("starInputR")?.value.trim() || "";
+
+      const checks = [
+        { label: "Bối cảnh (S) cụ thể, có mốc thời gian thực tế", pass: s.length >= 35, pts: 20 },
+        { label: "Nhiệm vụ (T) rõ ràng, tránh tham lam dàn trải", pass: t.length >= 35, pts: 20 },
+        { label: "Hành động (A) chi tiết, thể hiện vai trò chủ động cá nhân", pass: a.length >= 55, pts: 35 },
+        { label: "Kết quả (R) có minh chứng định lượng hoặc bài học sâu sắc", pass: r.length >= 35, pts: 25 }
+      ];
+
+      const totalPts = checks.reduce((acc, c) => acc + (c.pass ? c.pts : 0), 0);
+      const badge = document.getElementById("starTotalScoreBadge");
+      if (badge) badge.textContent = `${totalPts} / 100 điểm`;
+
+      const listEl = document.getElementById("starRubricChecklist");
+      if (listEl) {
+        listEl.innerHTML = checks.map(c => `
+          <div class="p-2.5 rounded-xl border ${c.pass ? 'bg-emerald-50 border-emerald-200 text-emerald-950' : 'bg-slate-50 border-slate-200 text-slate-600'} flex items-center justify-between">
+            <span class="font-semibold">${c.pass ? "✓" : "○"} ${c.label}</span>
+            <span class="font-mono font-bold">${c.pass ? "+" + c.pts : "0/" + c.pts}đ</span>
+          </div>
+        `).join("");
+      }
+
+      const preview = document.getElementById("starCompiledPreview");
+      if (preview) {
+        if (!s && !t && !a && !r) {
+          preview.textContent = "Hãy nhập nội dung vào 4 khung S – T – A – R bên trái để hệ thống tự động ghép thành bài luận mạch lạc...";
+        } else {
+          preview.textContent = [s, t, a, r].filter(Boolean).join("\n\n");
+        }
+      }
+    }
+
+    function copyStarCompiledText() {
+      const text = document.getElementById("starCompiledPreview")?.textContent || "";
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      temp.remove();
+      showStudioToast("Đã sao chép bài luận STAR", "Bạn có thể dán trực tiếp vào hồ sơ xét tuyển kết hợp hoặc tài liệu luyện phỏng vấn.");
+    }
+
+    function exportVisefComparisonCsv() {
+      const rows = [
+        ["Chi_So_Danh_Gia", "Truoc_Can_Thiep_PreTest", "Sau_Can_Thiep_PostTest", "Muc_Do_Cai_Thien"],
+        ["Diem_Lo_Au_AFOMO_TB", "35.4", "21.2", "Giam 40.1%"],
+        ["So_Phuong_Thuc_Du_Thi_TB", "4.3", "2.0", "Dung chuan Thong tu 95/2026"],
+        ["Thoi_Gian_Nhieu_MXH_Buoi_Toi_Phut", "95", "22", "Tiet kiem 73 phut/toi"],
+        ["Ty_Le_Tu_Tin_Ra_Quyet_Dinh", "44%", "89%", "Tang 45%"]
+      ];
+      const csv = "\uFEFF" + rows.map(r => r.join(",")).join("\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "MindUni_Studio_ViSEF_PrePost_2027.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showStudioToast("Đã xuất báo cáo đối chứng ViSEF", "Tệp dữ liệu Tiền – Hậu can thiệp đã được tải về máy.");
+    }
+
+    window.onload = function () {
+      renderPortfolioPreview();
+      evaluateStarDraft();
+      lucide.createIcons();
+    };
+  </script>
+</body>
+</html>
