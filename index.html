@@ -89,16 +89,16 @@
             <span class="font-extrabold text-sm sm:text-base tracking-tight">MINDUNI STUDIO</span>
             <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-indigodeep-500/25 text-indigodeep-200 border border-indigodeep-400/40">Chuẩn Thông tư 95/2026/TT-BGDĐT</span>
           </div>
-          <p class="text-[11px] text-slate-400 hidden sm:block">Hệ thống Kiến tạo Hồ sơ Năng lực Số (Lớp 11–12), Kiểm định Học bạ Số 2027 &amp; Luyện Phỏng vấn STAR</p>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Hệ thống Kiến tạo Hồ sơ Năng lực Số (Lớp 11–12), Luyện Phỏng vấn STAR cùng Tổng hợp Thực nghiệm</p>
         </div>
       </div>
 
-      <!-- 4-Module Switcher (Đúng thứ tự 1 -> 2 -> 3 -> 4) -->
+      <!-- 4-Module Switcher (Đúng thứ tự) -->
       <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
         <button onclick="switchStudioTab('portfolio')" id="tabBtnPortfolio" class="px-3.5 py-2 rounded-xl bg-tealcalm-600 text-white shadow-sm flex items-center gap-1.5 transition">
           <i data-lucide="award" class="w-3.5 h-3.5"></i> 1. Hồ sơ Năng lực Số (11–12)
         </button>
-        <button onclick="switchStudioTab('transcript')" id="tabBtnTranscript" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition">
+        <button onclick="switchStudioTab('transcript2027')" id="tabBtnTranscript2027" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition">
           <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> 2. Học bạ Số &amp; Kiểm định 2027
         </button>
         <button onclick="switchStudioTab('star')" id="tabBtnStar" class="px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition">
@@ -116,6 +116,7 @@
 
     <!-- ==================== TAB 1: DYNAMIC E-PORTFOLIO (LỚP 11 - 12) ==================== -->
     <section id="panelPortfolio" class="space-y-6">
+      <!-- Legal Context Banner (Circular 95/2026/TT-BGDĐT) -->
       <div class="p-5 rounded-3xl clean-card border-l-4 border-l-indigodeep-600 flex flex-wrap items-center justify-between gap-4 no-print">
         <div class="space-y-1 max-w-3xl">
           <span class="text-[11px] font-extrabold uppercase tracking-wider text-indigodeep-600">Định hướng Hồ sơ Xét tuyển Kết hợp theo Thông tư 95/2026/TT-BGDĐT (Hiệu lực 2027)</span>
@@ -130,7 +131,9 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left (5 cols): Student Identity & Evidence Builder Form -->
         <div class="lg:col-span-5 space-y-5 no-print">
+          <!-- Profile Info Card -->
           <div class="p-5 rounded-3xl clean-card space-y-3.5">
             <h2 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
               <i data-lucide="user-circle-2" class="w-4 h-4 text-tealcalm-600"></i>
@@ -159,6 +162,7 @@
             </div>
           </div>
 
+          <!-- Add New Evidence Form -->
           <form onsubmit="addPortfolioEvidence(event)" class="p-5 rounded-3xl clean-card space-y-3.5">
             <h2 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
               <i data-lucide="plus-circle" class="w-4 h-4 text-indigodeep-600"></i>
@@ -198,8 +202,10 @@
           </form>
         </div>
 
+        <!-- Right (7 cols): Printable A4 Digital E-Portfolio Card -->
         <div class="lg:col-span-7">
           <div id="printablePortfolioCard" class="p-6 sm:p-8 rounded-3xl clean-card border-2 border-slate-200 space-y-5">
+            <!-- Portfolio Header -->
             <div class="flex flex-wrap items-start justify-between gap-4 border-b border-slate-200 pb-5">
               <div class="space-y-1.5">
                 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tealcalm-50 text-tealcalm-800 border border-tealcalm-200 text-[10px] font-extrabold uppercase tracking-wider">
@@ -210,6 +216,7 @@
                 <div id="viewPfMajor" class="text-xs text-slate-600 font-medium">Mục tiêu: Kỹ thuật Phần mềm – Trí tuệ Nhân tạo (Toán – Văn + Lí, Hóa)</div>
               </div>
 
+              <!-- Verification QR Box -->
               <div class="p-3 rounded-2xl bg-slate-900 text-white text-center space-y-1 shrink-0">
                 <div class="w-14 h-14 mx-auto rounded-xl bg-white text-slate-900 flex items-center justify-center font-mono font-extrabold text-xs border-2 border-tealcalm-400">
                   QR-2027
@@ -218,12 +225,15 @@
               </div>
             </div>
 
+            <!-- Personal Statement -->
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-xs text-slate-700 leading-relaxed italic">
               "<span id="viewPfBio">Đam mê ứng dụng khoa học dữ liệu và tâm lý học hành vi để giải quyết các bài toán giáo dục thực tiễn cho học sinh THPT.</span>"
             </div>
 
+            <!-- Regulatory Alignment Badge (Circular 95/2026) -->
             <div id="pfRegulationAuditBox" class="p-3.5 rounded-2xl bg-indigodeep-50/80 border border-indigodeep-200 text-xs text-indigodeep-950 flex items-center justify-between gap-2"></div>
 
+            <!-- Timeline List -->
             <div class="space-y-3">
               <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Trục Thời Gian Minh Chứng Năng Lực (Lớp 11 – Lớp 12)</h3>
               <div id="portfolioTimelineContainer" class="space-y-3"></div>
@@ -233,212 +243,160 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 2: DIGITAL TRANSCRIPT & 2027 ADMISSION AUDIT ==================== -->
-    <section id="panelTranscript" class="hidden space-y-6">
-      <!-- Top Regulatory Banner -->
-      <div class="p-5 sm:p-6 rounded-3xl clean-card border-l-4 border-l-tealcalm-600 flex flex-wrap items-center justify-between gap-4">
-        <div class="space-y-1 max-w-4xl">
-          <span class="text-[11px] font-extrabold uppercase tracking-wider text-tealcalm-700">Phân hệ 2 • Chuẩn hóa Dữ liệu Học bạ Điện tử &amp; Quy chế Tuyển sinh 2027 (Thông tư 95/2026/TT-BGDĐT)</span>
-          <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Hướng Dẫn Lập Hồ Sơ Xét Tuyển Học Bạ Số &amp; Kiểm Định Điều Kiện 2027</h2>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            Tính toán tự động điểm xét tuyển tổ hợp 3 môn qua 5 hoặc 6 học kỳ (lớp 10, 11, 12), áp dụng trần điểm cộng khuyến khích tối đa <strong>0,50/30 điểm</strong>, kiểm định ngưỡng đảm bảo chất lượng đầu vào <strong>15,0 điểm/3 môn</strong> và điều kiện học lực cả năm lớp 12 mức <strong>Tốt (Giỏi)</strong> cho nhóm ngành đặc thù (Sư phạm – Luật – Y-Dược).
-          </p>
-        </div>
-        <button onclick="fillSampleTranscriptData()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition">
-          <i data-lucide="sparkles" class="w-4 h-4 text-tealcalm-400"></i> Nạp Dữ Liệu Mẫu
-        </button>
+    <!-- ==================== TAB 2: HƯỚNG DẪN LẬP HỒ SƠ XÉT TUYỂN HỌC BẠ SỐ & KIỂM ĐỊNH 2027 ==================== -->
+    <section id="panelTranscript2027" class="hidden space-y-6">
+      <div class="p-5 sm:p-6 rounded-3xl clean-card border-l-4 border-l-tealcalm-600 space-y-2">
+        <span class="text-[11px] font-extrabold uppercase tracking-wider text-tealcalm-700">Phân hệ 2 – Chuẩn hóa Dữ liệu Học bạ Điện tử &amp; Quy chế Tuyển sinh 2027</span>
+        <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Hướng Dẫn Lập Hồ Sơ Xét Tuyển Học Bạ Số &amp; Kiểm Định Điều Kiện 2027</h2>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Nhập điểm trung bình 3 môn tổ hợp qua 5–6 học kỳ (lớp 10, lớp 11, lớp 12), tự động tính điểm xét học bạ cộng điểm khuyến khích (khống chế trần tối đa <strong>0,50/30 điểm</strong> năm 2027), kiểm định ngưỡng nguồn tuyển tối thiểu <strong>15,0 điểm/3 môn</strong>, kiểm tra bắt buộc điều kiện học lực cả năm lớp 12 mức <strong>Tốt (Giỏi)</strong> cho nhóm ngành <strong>Sư phạm – Luật – Y-Dược</strong>, kèm danh mục 4 bước rà soát học bạ điện tử trên Cơ sở dữ liệu ngành của Bộ GD&amp;ĐT.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <!-- Left (7 cols): 5-6 Semester Score Input & Major/Bonus Config -->
+        <!-- Left (7 cols): Score Entry & 4-Step Audit Checklist -->
         <div class="lg:col-span-7 space-y-5">
           <div class="p-5 sm:p-6 rounded-3xl clean-card space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3.5">
-              <h3 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
-                <i data-lucide="calculator" class="w-4 h-4 text-tealcalm-600"></i>
-                1. Bảng Nhập Điểm Trung Bình 3 Môn Tổ Hợp (Thang 10)
-              </h3>
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h3 class="font-extrabold text-sm text-slate-900">Nhập Điểm Trung Bình 3 Môn Tổ Hợp (5–6 Học kỳ)</h3>
               <div class="flex items-center gap-2 text-xs">
-                <span class="font-bold text-slate-600">Phạm vi xét:</span>
-                <select id="trSemesterMode" onchange="calculateTranscript2027()" class="rounded-xl border border-slate-300 px-3 py-1.5 bg-slate-50 font-bold text-slate-800 outline-none focus:border-tealcalm-500">
-                  <option value="6" selected>6 Học kỳ (Lớp 10, 11, 12)</option>
-                  <option value="5">5 Học kỳ (Trừ HK2 Lớp 12)</option>
+                <label for="hbSemesterCount" class="font-bold text-slate-700">Số học kỳ tính:</label>
+                <select id="hbSemesterCount" onchange="calcTranscript2027()" class="rounded-xl border border-slate-300 px-3 py-1.5 bg-slate-50 font-bold outline-none">
+                  <option value="6" selected>6 học kỳ (Lớp 10, 11, 12)</option>
+                  <option value="5">5 học kỳ (Lớp 10, 11 &amp; HK1 Lớp 12)</option>
                 </select>
               </div>
             </div>
 
-            <!-- Subject Names & Scores Grid -->
             <div class="overflow-x-auto">
-              <table class="w-full text-xs text-center border-collapse">
+              <table class="w-full text-left border-collapse text-xs">
                 <thead>
                   <tr class="bg-slate-900 text-white">
-                    <th class="p-2.5 text-left rounded-tl-xl min-w-[130px]">Môn trong Tổ hợp</th>
+                    <th class="p-2.5 rounded-tl-xl">Môn tổ hợp</th>
                     <th class="p-2">HK1 L10</th>
                     <th class="p-2">HK2 L10</th>
                     <th class="p-2">HK1 L11</th>
                     <th class="p-2">HK2 L11</th>
                     <th class="p-2">HK1 L12</th>
-                    <th id="thHk2L12" class="p-2">HK2 L12</th>
-                    <th class="p-2.5 rounded-tr-xl bg-tealcalm-800">TB Môn</th>
+                    <th id="thHbHk2L12" class="p-2">HK2 L12</th>
+                    <th class="p-2.5 rounded-tr-xl text-right">TB Môn</th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-200 bg-white font-mono">
-                  <!-- Subject 1 -->
                   <tr>
-                    <td class="p-2 text-left font-sans">
-                      <input id="trSub1Name" type="text" value="Môn 1 (VD: Toán)" oninput="calculateTranscript2027()" class="w-full font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 outline-none focus:border-tealcalm-500" />
-                    </td>
-                    <td class="p-1.5"><input id="s1_0" type="number" step="0.1" min="0" max="10" value="8.5" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s1_1" type="number" step="0.1" min="0" max="10" value="8.7" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s1_2" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s1_3" type="number" step="0.1" min="0" max="10" value="9.0" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s1_4" type="number" step="0.1" min="0" max="10" value="9.1" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="tdS1_5" class="p-1.5"><input id="s1_5" type="number" step="0.1" min="0" max="10" value="9.2" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="avgSub1" class="p-2 font-extrabold text-tealcalm-800 bg-tealcalm-50/60">8.88</td>
+                    <td class="p-2 font-sans"><input id="hbSub1Name" type="text" value="Môn 1" oninput="calcTranscript2027()" class="w-24 rounded-lg border border-slate-300 px-2 py-1 font-bold text-slate-800 outline-none" /></td>
+                    <td class="p-1.5"><input id="hb1_0" type="number" step="0.1" min="0" max="10" value="8.5" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb1_1" type="number" step="0.1" min="0" max="10" value="8.6" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb1_2" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb1_3" type="number" step="0.1" min="0" max="10" value="8.9" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb1_4" type="number" step="0.1" min="0" max="10" value="9.0" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="tdHb1_5" class="p-1.5"><input id="hb1_5" type="number" step="0.1" min="0" max="10" value="9.2" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="hbAvg1" class="p-2 text-right font-extrabold text-tealcalm-800">8.83</td>
                   </tr>
-                  <!-- Subject 2 -->
                   <tr>
-                    <td class="p-2 text-left font-sans">
-                      <input id="trSub2Name" type="text" value="Môn 2 (VD: Vật lí)" oninput="calculateTranscript2027()" class="w-full font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 outline-none focus:border-tealcalm-500" />
-                    </td>
-                    <td class="p-1.5"><input id="s2_0" type="number" step="0.1" min="0" max="10" value="8.2" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s2_1" type="number" step="0.1" min="0" max="10" value="8.4" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s2_2" type="number" step="0.1" min="0" max="10" value="8.6" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s2_3" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s2_4" type="number" step="0.1" min="0" max="10" value="8.9" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="tdS2_5" class="p-1.5"><input id="s2_5" type="number" step="0.1" min="0" max="10" value="9.0" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="avgSub2" class="p-2 font-extrabold text-tealcalm-800 bg-tealcalm-50/60">8.65</td>
+                    <td class="p-2 font-sans"><input id="hbSub2Name" type="text" value="Môn 2" oninput="calcTranscript2027()" class="w-24 rounded-lg border border-slate-300 px-2 py-1 font-bold text-slate-800 outline-none" /></td>
+                    <td class="p-1.5"><input id="hb2_0" type="number" step="0.1" min="0" max="10" value="8.2" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb2_1" type="number" step="0.1" min="0" max="10" value="8.4" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb2_2" type="number" step="0.1" min="0" max="10" value="8.5" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb2_3" type="number" step="0.1" min="0" max="10" value="8.7" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb2_4" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="tdHb2_5" class="p-1.5"><input id="hb2_5" type="number" step="0.1" min="0" max="10" value="9.0" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="hbAvg2" class="p-2 text-right font-extrabold text-tealcalm-800">8.58</td>
                   </tr>
-                  <!-- Subject 3 -->
                   <tr>
-                    <td class="p-2 text-left font-sans">
-                      <input id="trSub3Name" type="text" value="Môn 3 (VD: Hóa học)" oninput="calculateTranscript2027()" class="w-full font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1.5 outline-none focus:border-tealcalm-500" />
-                    </td>
-                    <td class="p-1.5"><input id="s3_0" type="number" step="0.1" min="0" max="10" value="8.0" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s3_1" type="number" step="0.1" min="0" max="10" value="8.3" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s3_2" type="number" step="0.1" min="0" max="10" value="8.5" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s3_3" type="number" step="0.1" min="0" max="10" value="8.7" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td class="p-1.5"><input id="s3_4" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="tdS3_5" class="p-1.5"><input id="s3_5" type="number" step="0.1" min="0" max="10" value="8.9" oninput="calculateTranscript2027()" class="w-12 text-center rounded-lg border border-slate-300 py-1.5 bg-slate-50 focus:bg-white focus:border-tealcalm-500 outline-none" /></td>
-                    <td id="avgSub3" class="p-2 font-extrabold text-tealcalm-800 bg-tealcalm-50/60">8.53</td>
+                    <td class="p-2 font-sans"><input id="hbSub3Name" type="text" value="Môn 3" oninput="calcTranscript2027()" class="w-24 rounded-lg border border-slate-300 px-2 py-1 font-bold text-slate-800 outline-none" /></td>
+                    <td class="p-1.5"><input id="hb3_0" type="number" step="0.1" min="0" max="10" value="8.0" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb3_1" type="number" step="0.1" min="0" max="10" value="8.2" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb3_2" type="number" step="0.1" min="0" max="10" value="8.4" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb3_3" type="number" step="0.1" min="0" max="10" value="8.6" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td class="p-1.5"><input id="hb3_4" type="number" step="0.1" min="0" max="10" value="8.7" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="tdHb3_5" class="p-1.5"><input id="hb3_5" type="number" step="0.1" min="0" max="10" value="8.8" oninput="calcTranscript2027()" class="w-12 rounded-lg border border-slate-300 px-1.5 py-1 text-center outline-none" /></td>
+                    <td id="hbAvg3" class="p-2 text-right font-extrabold text-tealcalm-800">8.45</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <!-- Bonus Points & Special Major Conditions -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Điểm Khuyến khích thô đề xuất</label>
-                <input id="trRawBonus" type="number" step="0.05" min="0" max="3" value="0.75" oninput="calculateTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 focus:bg-white focus:border-indigodeep-500 font-mono font-bold outline-none" />
-                <span class="text-[10px] text-slate-500">Tự động chặn trần 0,50đ năm 2027</span>
+                <label class="block font-bold text-slate-700 mb-1">Điểm khuyến khích nhập (trần 0,50đ)</label>
+                <input id="hbBonusInput" type="number" step="0.05" min="0" max="5" value="0.50" oninput="calcTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-mono font-bold outline-none" />
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Nhóm ngành đăng ký xét tuyển</label>
-                <select id="trMajorGroup" onchange="calculateTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold outline-none focus:border-indigodeep-500">
-                  <option value="GENERAL">Nhóm ngành Đại trà (Kỹ thuật, Kinh tế, CNTT...)</option>
-                  <option value="SPECIAL">Sư phạm – Luật – Y-Dược (Ngành đặc thù)</option>
+                <label class="block font-bold text-slate-700 mb-1">Nhóm ngành xét tuyển</label>
+                <select id="hbMajorGroup" onchange="calcTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold outline-none">
+                  <option value="OTHER">Nhóm ngành khác</option>
+                  <option value="PEDAGOGY_LAW_HEALTH" selected>Sư phạm – Luật – Y-Dược</option>
                 </select>
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Kết quả Học tập cả năm Lớp 12</label>
-                <select id="trGrade12Rank" onchange="calculateTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold outline-none focus:border-indigodeep-500">
-                  <option value="TOT" selected>Mức Tốt (Giỏi)</option>
-                  <option value="KHA">Mức Khá</option>
-                  <option value="DAT">Mức Đạt (Trung bình)</option>
+                <label class="block font-bold text-slate-700 mb-1">Học lực cả năm lớp 12</label>
+                <select id="hbGrade12Academic" onchange="calcTranscript2027()" class="w-full rounded-xl border border-slate-300 px-3 py-2 bg-slate-50 font-semibold outline-none">
+                  <option value="TOT" selected>Tốt (Giỏi)</option>
+                  <option value="KHA">Khá</option>
+                  <option value="DAT">Đạt</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <!-- 4-Step Digital Transcript Audit Checklist (CSDL Ngành Bộ GD&ĐT) -->
-          <div class="p-5 sm:p-6 rounded-3xl clean-card space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2">
-              <h3 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
-                <i data-lucide="shield-check" class="w-4 h-4 text-indigodeep-600"></i>
-                2. Danh Mục 4 Bước Rà Soát Học Bạ Điện Tử Trên CSDL Ngành (Bộ GD&amp;ĐT)
-              </h3>
-              <span id="trChecklistBadge" class="px-3 py-1 rounded-full bg-indigodeep-50 text-indigodeep-800 border border-indigodeep-200 font-mono font-bold text-xs">0 / 4 bước hoàn tất</span>
-            </div>
-
-            <div class="space-y-2.5 text-xs">
-              <label class="flex items-start gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 cursor-pointer transition">
-                <input type="checkbox" class="tr-audit-chk mt-0.5 w-4 h-4 accent-tealcalm-600 rounded" onchange="updateTranscriptChecklist()" checked />
-                <div class="space-y-0.5">
-                  <div class="font-extrabold text-slate-900">Bước 1: Đối chiếu định danh CCCD &amp; Mã định danh Bộ GD&amp;ĐT trên Cổng Dữ liệu Ngành</div>
-                  <p class="text-slate-600">Xác nhận họ tên, ngày sinh, nơi sinh, đối tượng ưu tiên khu vực/chính sách trên học bạ số trùng khớp 100% với Cơ sở dữ liệu Quốc gia về Dân cư.</p>
-                </div>
+          <!-- Danh mục 4 bước rà soát học bạ điện tử trên CSDL ngành của Bộ GD&ĐT -->
+          <div class="p-5 sm:p-6 rounded-3xl clean-card space-y-3">
+            <h3 class="font-extrabold text-sm text-slate-900">Danh Mục 4 Bước Rà Soát Học Bạ Điện Tử Trên CSDL Ngành (Bộ GD&amp;ĐT)</h3>
+            <div class="space-y-2 text-xs text-slate-700">
+              <label class="flex items-start gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <input type="checkbox" class="mt-0.5 accent-tealcalm-600" checked />
+                <span><strong>Bước 1:</strong> Đăng nhập Hệ thống/CSDL ngành của Bộ GD&amp;ĐT bằng tài khoản định danh cá nhân (VNeID/CCCD) và kiểm tra đầy đủ dữ liệu điểm 6 học kỳ lớp 10, 11, 12.</span>
               </label>
-
-              <label class="flex items-start gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 cursor-pointer transition">
-                <input type="checkbox" class="tr-audit-chk mt-0.5 w-4 h-4 accent-tealcalm-600 rounded" onchange="updateTranscriptChecklist()" checked />
-                <div class="space-y-0.5">
-                  <div class="font-extrabold text-slate-900">Bước 2: Kiểm tra tính toàn vẹn điểm số 6 học kỳ &amp; Chữ ký số Hiệu trưởng</div>
-                  <p class="text-slate-600">Rà soát điểm từng môn học kỳ I, II các lớp 10, 11, 12 và đánh giá kết quả học tập/rèn luyện cả năm lớp 12 đã được trường THPT ký số phát hành hợp lệ.</p>
-                </div>
+              <label class="flex items-start gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <input type="checkbox" class="mt-0.5 accent-tealcalm-600" checked />
+                <span><strong>Bước 2:</strong> Đối chiếu điểm trung bình từng môn, xếp loại học lực cả năm lớp 12 và thông tin khu vực/đối tượng ưu tiên; báo ngay trường THPT nếu phát hiện sai lệch để hiệu chỉnh trên CSDL.</span>
               </label>
-
-              <label class="flex items-start gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 cursor-pointer transition">
-                <input type="checkbox" class="tr-audit-chk mt-0.5 w-4 h-4 accent-tealcalm-600 rounded" onchange="updateTranscriptChecklist()" />
-                <div class="space-y-0.5">
-                  <div class="font-extrabold text-slate-900">Bước 3: Xác thực điện tử không nộp trùng giấy tờ bản cứng</div>
-                  <p class="text-slate-600">Dữ liệu học bạ điện tử được đồng bộ trực tiếp lên Hệ thống Hỗ trợ Tuyển sinh chung của Bộ GD&amp;ĐT; thí sinh <strong>không phải in sao công chứng hoặc nộp hồ sơ giấy</strong> về từng trường đại học (trừ minh chứng năng khiếu/đặc thù riêng nếu có).</p>
-                </div>
+              <label class="flex items-start gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <input type="checkbox" class="mt-0.5 accent-tealcalm-600" />
+                <span><strong>Bước 3:</strong> Xác nhận sử dụng dữ liệu học bạ số đồng bộ trực tiếp trên Hệ thống chung — <strong>không nộp trùng giấy tờ</strong> bản sao học bạ giấy rời rạc ngoài quy định.</span>
               </label>
-
-              <label class="flex items-start gap-3 p-3.5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 cursor-pointer transition">
-                <input type="checkbox" class="tr-audit-chk mt-0.5 w-4 h-4 accent-tealcalm-600 rounded" onchange="updateTranscriptChecklist()" />
-                <div class="space-y-0.5">
-                  <div class="font-extrabold text-slate-900">Bước 4: Đăng ký nguyện vọng &amp; Thanh toán lệ phí duy nhất trên Hệ thống chung</div>
-                  <p class="text-slate-600">Thực hiện sắp xếp thứ tự ưu tiên nguyện vọng và nộp lệ phí xét tuyển trực tuyến <strong>một lần duy nhất trên Cổng Tuyển sinh chung của Bộ GD&amp;ĐT</strong>; tuyệt đối không đóng lệ phí kép qua các đường link hoặc cổng thu ngoài luồng.</p>
-                </div>
+              <label class="flex items-start gap-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 cursor-pointer">
+                <input type="checkbox" class="mt-0.5 accent-tealcalm-600" />
+                <span><strong>Bước 4:</strong> Hoàn tất đăng ký nguyện vọng và thanh toán lệ phí trực tuyến đúng hướng dẫn trên Hệ thống chung — <strong>không đóng lệ phí kép ngoài Hệ thống chung</strong>.</span>
               </label>
             </div>
           </div>
         </div>
 
-        <!-- Right (5 cols): Automated 2027 Calculation & Compliance Audit Report -->
-        <div class="lg:col-span-5 space-y-5">
-          <div class="p-6 rounded-3xl bg-slate-950 text-white space-y-5 shadow-xl border border-slate-800">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3.5">
+        <!-- Right (5 cols): Automatic 2027 Score & Condition Audit -->
+        <div class="lg:col-span-5">
+          <div class="p-6 rounded-3xl clean-card border-2 border-slate-200 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
               <div>
-                <div class="text-[10px] font-bold uppercase tracking-wider text-tealcalm-400">Kết quả Kiểm định Tự động 2027</div>
-                <h3 class="text-base font-extrabold text-white mt-0.5">Tổng Hợp Điểm &amp; Điều Kiện Học Bạ Số</h3>
+                <div class="text-[10px] font-extrabold uppercase tracking-wider text-indigodeep-600">Kiểm định Điều kiện 2027</div>
+                <h3 class="text-base font-extrabold text-slate-900">Kết Quả Tính Điểm &amp; Rà Soát Chuẩn</h3>
               </div>
-              <div class="w-10 h-10 rounded-2xl bg-tealcalm-500/20 border border-tealcalm-400/40 flex items-center justify-center text-tealcalm-300">
-                <i data-lucide="badge-check" class="w-5 h-5"></i>
+              <span class="px-2.5 py-1 rounded-full bg-tealcalm-50 text-tealcalm-800 border border-tealcalm-200 font-mono text-[10px] font-bold">2027</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-500 font-semibold">Tổng 3 môn (chưa cộng)</div>
+                <div id="hbBaseSum" class="font-mono font-extrabold text-xl text-slate-900 mt-0.5">25.86</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                <div class="text-[11px] text-slate-500 font-semibold">Điểm KK áp dụng (≤ 0,50)</div>
+                <div id="hbAppliedBonus" class="font-mono font-extrabold text-xl text-indigodeep-700 mt-0.5">+0.50</div>
               </div>
             </div>
 
-            <!-- Score Breakdown -->
-            <div class="grid grid-cols-2 gap-3">
-              <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800">
-                <div class="text-[11px] text-slate-400">Tổng điểm 3 môn gốc</div>
-                <div id="resBaseScore" class="font-mono font-extrabold text-2xl text-white mt-0.5">26.07</div>
-                <div class="text-[10px] text-slate-400 mt-0.5">Thang điểm 30,00</div>
-              </div>
-              <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800">
-                <div class="text-[11px] text-slate-400">Điểm Khuyến khích hợp lệ</div>
-                <div id="resAppliedBonus" class="font-mono font-extrabold text-2xl text-amber-400 mt-0.5">+0.50</div>
-                <div id="resBonusCapNote" class="text-[10px] text-amber-300/90 mt-0.5">Đã khống chế trần 0,50/30đ</div>
-              </div>
-            </div>
-
-            <div class="p-4 rounded-2xl bg-gradient-to-r from-indigodeep-900/90 to-tealcalm-900/90 border border-tealcalm-500/40 flex items-center justify-between">
+            <div class="p-4 rounded-2xl bg-slate-900 text-white flex items-center justify-between">
               <div>
-                <div class="text-xs font-bold text-tealcalm-200">Điểm Xét Tuyển Học Bạ Chính Thức</div>
-                <div class="text-[11px] text-slate-300 mt-0.5">Bao gồm điểm 3 môn tổ hợp + điểm cộng hợp lệ</div>
+                <div class="text-[10px] font-bold uppercase tracking-wider text-tealcalm-300">Điểm Xét Học Bạ (Thang 30)</div>
+                <div class="text-xs text-slate-300">Đã cộng điểm khuyến khích (trần 0,50/30 điểm)</div>
               </div>
-              <div id="resFinalScore" class="font-mono font-extrabold text-3xl text-white">26.57</div>
+              <div id="hbFinalTotal" class="font-mono font-extrabold text-2xl text-tealcalm-300">26.36</div>
             </div>
 
-            <!-- Automated Regulatory Checks -->
-            <div class="space-y-2.5 text-xs">
-              <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Kiểm định Tiêu chuẩn Thông tư 95/2026</div>
-              <div id="auditFloor15Box" class="p-3.5 rounded-2xl border"></div>
-              <div id="auditSpecialMajorBox" class="p-3.5 rounded-2xl border"></div>
-              <div id="auditBonusCapBox" class="p-3.5 rounded-2xl border"></div>
-            </div>
+            <div id="hbAudit15Box" class="p-3.5 rounded-2xl border text-xs"></div>
+            <div id="hbAuditSpecialBox" class="p-3.5 rounded-2xl border text-xs"></div>
+            <div id="hbAuditCapBox" class="p-3.5 rounded-2xl border text-xs"></div>
           </div>
         </div>
       </div>
@@ -464,6 +422,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <!-- Left (7 cols): 4-Step STAR Guided Builder -->
         <div class="lg:col-span-7 p-5 sm:p-6 rounded-3xl clean-card space-y-4">
           <div class="space-y-1.5">
             <label class="flex items-center justify-between text-xs font-extrabold text-slate-900">
@@ -507,6 +466,7 @@
           </div>
         </div>
 
+        <!-- Right (5 cols): Anti-Cliché Rubric & Compiled Preview -->
         <div class="lg:col-span-5 space-y-5">
           <div class="p-5 rounded-3xl clean-card space-y-3.5">
             <div class="flex items-center justify-between">
@@ -539,6 +499,7 @@
           </button>
         </div>
 
+        <!-- 4 Core KPI Comparison Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div class="p-4 rounded-2xl bg-tealcalm-50/80 border border-tealcalm-200 space-y-1">
             <div class="text-[11px] font-bold text-tealcalm-800 uppercase">Chỉ số Lo âu A-FOMO</div>
@@ -562,6 +523,7 @@
           </div>
         </div>
 
+        <!-- Ecosystem Architecture Summary Table -->
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
@@ -594,8 +556,8 @@
               <tr>
                 <td class="p-3.5 font-extrabold text-slate-900">4. MindUni Studio (Hiện tại)</td>
                 <td class="p-3.5 text-slate-600">Tự chủ năng lực (Self-Efficacy) &amp; Tự sự STAR</td>
-                <td class="p-3.5 text-slate-700">Hồ sơ Năng lực Số E-Portfolio, Kiểm định Học bạ Số 2027, Bài luận STAR &amp; Đối chứng</td>
-                <td class="p-3.5 text-tealcalm-800 font-semibold">Tối ưu hồ sơ xét tuyển thẳng/tài năng &amp; học bạ số trong 03 phương thức</td>
+                <td class="p-3.5 text-slate-700">Hồ sơ Năng lực Số E-Portfolio lớp 11–12, Bài luận/Phỏng vấn STAR &amp; Đối chứng</td>
+                <td class="p-3.5 text-tealcalm-800 font-semibold">Tối ưu hồ sơ xét tuyển thẳng/tài năng trong 03 phương thức tối đa của ngành</td>
               </tr>
             </tbody>
           </table>
@@ -606,6 +568,12 @@
   </main>
 
   <script>
+    function refreshIcons() {
+      if (window.lucide && typeof window.lucide.createIcons === "function") {
+        window.lucide.createIcons();
+      }
+    }
+
     function showStudioToast(title, msg) {
       const box = document.getElementById("studioToastBox");
       if (!box) return;
@@ -619,13 +587,13 @@
     function switchStudioTab(tab) {
       const panels = {
         portfolio: document.getElementById("panelPortfolio"),
-        transcript: document.getElementById("panelTranscript"),
+        transcript2027: document.getElementById("panelTranscript2027"),
         star: document.getElementById("panelStar"),
         visef: document.getElementById("panelVisef")
       };
       const btns = {
         portfolio: document.getElementById("tabBtnPortfolio"),
-        transcript: document.getElementById("tabBtnTranscript"),
+        transcript2027: document.getElementById("tabBtnTranscript2027"),
         star: document.getElementById("tabBtnStar"),
         visef: document.getElementById("tabBtnVisef")
       };
@@ -640,10 +608,9 @@
           btns[k].className = "px-3.5 py-2 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white flex items-center gap-1.5 transition";
         }
       });
-      lucide.createIcons();
+      refreshIcons();
     }
 
-    /* ==================== MODULE 1: E-PORTFOLIO ==================== */
     let portfolioEvidences = [
       {
         stage: "Lớp 11 • Học kỳ II",
@@ -729,124 +696,78 @@
       }
     }
 
-    /* ==================== MODULE 2: DIGITAL TRANSCRIPT & 2027 AUDIT ==================== */
-    function fillSampleTranscriptData() {
-      const sample = [
-        [8.6, 8.8, 8.9, 9.1, 9.2, 9.3],
-        [8.4, 8.5, 8.7, 8.9, 9.0, 9.1],
-        [8.2, 8.4, 8.6, 8.8, 8.9, 9.0]
-      ];
-      for (let s = 1; s <= 3; s++) {
-        for (let k = 0; k < 6; k++) {
-          const el = document.getElementById(`s${s}_${k}`);
-          if (el) el.value = sample[s - 1][k];
+    function calcTranscript2027() {
+      const semCount = parseInt(document.getElementById("hbSemesterCount")?.value || "6", 10);
+      const thHk2 = document.getElementById("thHbHk2L12");
+      if (thHk2) thHk2.style.opacity = semCount === 6 ? "1" : "0.35";
+
+      const avgs = [1, 2, 3].map(subIdx => {
+        const td5 = document.getElementById(`tdHb${subIdx}_5`);
+        const inp5 = document.getElementById(`hb${subIdx}_5`);
+        if (td5) td5.style.opacity = semCount === 6 ? "1" : "0.35";
+        if (inp5) inp5.disabled = semCount !== 6;
+
+        let total = 0;
+        for (let k = 0; k < semCount; k++) {
+          const val = parseFloat(document.getElementById(`hb${subIdx}_${k}`)?.value) || 0;
+          total += Math.min(10, Math.max(0, val));
         }
-      }
-      document.getElementById("trRawBonus").value = "0.75";
-      document.getElementById("trMajorGroup").value = "SPECIAL";
-      document.getElementById("trGrade12Rank").value = "TOT";
-      calculateTranscript2027();
-      showStudioToast("Đã nạp dữ liệu học bạ mẫu", "Hệ thống đã tự động tính điểm 6 học kỳ và kiểm định điều kiện 2027.");
-    }
+        const avg = total / semCount;
+        const avgCell = document.getElementById(`hbAvg${subIdx}`);
+        if (avgCell) avgCell.textContent = avg.toFixed(2);
+        return avg;
+      });
 
-    function calculateTranscript2027() {
-      const mode = parseInt(document.getElementById("trSemesterMode")?.value || "6", 10);
-      const is6Sem = mode === 6;
-
-      // Toggle HK2 Lớp 12 column visibility/state
-      const thHk2 = document.getElementById("thHk2L12");
-      if (thHk2) thHk2.classList.toggle("opacity-40", !is6Sem);
-
-      let subAvgs = [];
-      for (let s = 1; s <= 3; s++) {
-        const td5 = document.getElementById(`tdS${s}_5`);
-        const inp5 = document.getElementById(`s${s}_5`);
-        if (td5) td5.classList.toggle("opacity-40", !is6Sem);
-        if (inp5) inp5.disabled = !is6Sem;
-
-        let sum = 0;
-        for (let k = 0; k < mode; k++) {
-          const val = parseFloat(document.getElementById(`s${s}_${k}`)?.value) || 0;
-          sum += Math.min(10, Math.max(0, val));
-        }
-        const avg = sum / mode;
-        subAvgs.push(avg);
-        const avgEl = document.getElementById(`avgSub${s}`);
-        if (avgEl) avgEl.textContent = avg.toFixed(2);
-      }
-
-      const baseTotal = subAvgs.reduce((a, b) => a + b, 0);
-      const rawBonus = Math.max(0, parseFloat(document.getElementById("trRawBonus")?.value) || 0);
+      const baseSum = avgs.reduce((a, b) => a + b, 0);
+      const rawBonus = Math.max(0, parseFloat(document.getElementById("hbBonusInput")?.value) || 0);
       const appliedBonus = Math.min(0.50, rawBonus);
-      const finalScore = Math.min(30.0, baseTotal + appliedBonus);
+      const finalScore = Math.min(30, baseSum + appliedBonus);
 
-      document.getElementById("resBaseScore").textContent = baseTotal.toFixed(2);
-      document.getElementById("resAppliedBonus").textContent = `+${appliedBonus.toFixed(2)}`;
-      document.getElementById("resFinalScore").textContent = finalScore.toFixed(2);
+      document.getElementById("hbBaseSum").textContent = baseSum.toFixed(2);
+      document.getElementById("hbAppliedBonus").textContent = `+${appliedBonus.toFixed(2)}`;
+      document.getElementById("hbFinalTotal").textContent = finalScore.toFixed(2);
 
-      const capNote = document.getElementById("resBonusCapNote");
-      if (capNote) {
-        capNote.textContent = rawBonus > 0.50
-          ? `Đã cắt giảm từ ${rawBonus.toFixed(2)}đ xuống trần 0,50đ`
-          : `Trong giới hạn trần 0,50/30đ năm 2027`;
+      const box15 = document.getElementById("hbAudit15Box");
+      if (box15) {
+        const ok15 = baseSum >= 15.0;
+        box15.className = ok15
+          ? "p-3.5 rounded-2xl border border-emerald-200 bg-emerald-50 text-emerald-950"
+          : "p-3.5 rounded-2xl border border-rose-200 bg-rose-50 text-rose-950";
+        box15.innerHTML = ok15
+          ? `<strong>✓ Ngưỡng nguồn tuyển ≥ 15,0 điểm/3 môn:</strong> Đạt (${baseSum.toFixed(2)}/30 điểm).`
+          : `<strong>✕ Chưa đạt ngưỡng nguồn tuyển ≥ 15,0 điểm/3 môn:</strong> Hiện đạt ${baseSum.toFixed(2)}/30 điểm.`;
       }
 
-      // 1. Ngưỡng sàn 15,0 điểm / 3 môn
-      const passFloor15 = baseTotal >= 15.0;
-      const floorBox = document.getElementById("auditFloor15Box");
-      if (floorBox) {
-        floorBox.className = passFloor15
-          ? "p-3.5 rounded-2xl border border-emerald-500/40 bg-emerald-950/50 text-emerald-200"
-          : "p-3.5 rounded-2xl border border-rose-500/50 bg-rose-950/60 text-rose-200";
-        floorBox.innerHTML = passFloor15
-          ? `<div class="font-extrabold text-emerald-300">✓ Đạt ngưỡng nguồn tuyển tối thiểu (≥ 15,00đ)</div><div class="mt-1 text-slate-300">Tổng điểm 3 môn tổ hợp đạt <strong>${baseTotal.toFixed(2)}/30 điểm</strong>, đủ điều kiện nhận hồ sơ xét tuyển học bạ theo Thông tư 95/2026.</div>`
-          : `<div class="font-extrabold text-rose-300">✕ Chưa đạt ngưỡng sàn 15,00 điểm/3 môn</div><div class="mt-1 text-slate-300">Tổng điểm 3 môn hiện tại là <strong>${baseTotal.toFixed(2)}/30 điểm</strong> (thấp hơn sàn 15,00đ). Không đủ điều kiện xét tuyển đại học bằng tổ hợp này.</div>`;
-      }
-
-      // 2. Điều kiện học lực cả năm lớp 12 mức Tốt (Giỏi) cho nhóm ngành Sư phạm – Luật – Y-Dược
-      const majorGroup = document.getElementById("trMajorGroup")?.value || "GENERAL";
-      const rank12 = document.getElementById("trGrade12Rank")?.value || "TOT";
-      const specialBox = document.getElementById("auditSpecialMajorBox");
-      if (specialBox) {
-        if (majorGroup === "SPECIAL") {
-          const passSpecial = rank12 === "TOT";
-          specialBox.className = passSpecial
-            ? "p-3.5 rounded-2xl border border-emerald-500/40 bg-emerald-950/50 text-emerald-200"
-            : "p-3.5 rounded-2xl border border-rose-500/50 bg-rose-950/60 text-rose-200";
-          specialBox.innerHTML = passSpecial
-            ? `<div class="font-extrabold text-emerald-300">✓ Đủ điều kiện Học lực Lớp 12 mức Tốt (Giỏi)</div><div class="mt-1 text-slate-300">Đáp ứng yêu cầu bắt buộc đối với nhóm ngành đặc thù <strong>Sư phạm – Luật – Y-Dược</strong> khi xét tuyển học bạ năm 2027.</div>`
-            : `<div class="font-extrabold text-rose-300">✕ Không đủ điều kiện nhóm ngành Sư phạm – Luật – Y-Dược</div><div class="mt-1 text-slate-300">Nhóm ngành đặc thù bắt buộc kết quả học tập cả năm lớp 12 đạt mức <strong>Tốt (Giỏi)</strong>. Hồ sơ hiện tại chưa đáp ứng điều kiện cứng này.</div>`;
+      const majorGroup = document.getElementById("hbMajorGroup")?.value || "OTHER";
+      const academic12 = document.getElementById("hbGrade12Academic")?.value || "TOT";
+      const boxSpecial = document.getElementById("hbAuditSpecialBox");
+      if (boxSpecial) {
+        if (majorGroup === "PEDAGOGY_LAW_HEALTH") {
+          const okSpecial = academic12 === "TOT";
+          boxSpecial.className = okSpecial
+            ? "p-3.5 rounded-2xl border border-emerald-200 bg-emerald-50 text-emerald-950"
+            : "p-3.5 rounded-2xl border border-rose-200 bg-rose-50 text-rose-950";
+          boxSpecial.innerHTML = okSpecial
+            ? `<strong>✓ Điều kiện học lực lớp 12 mức Tốt (Giỏi) cho Sư phạm – Luật – Y-Dược:</strong> Đạt.`
+            : `<strong>✕ Điều kiện học lực lớp 12 mức Tốt (Giỏi) cho Sư phạm – Luật – Y-Dược:</strong> Chưa đạt (hiện ở mức ${academic12 === "KHA" ? "Khá" : "Đạt"}).`;
         } else {
-          specialBox.className = "p-3.5 rounded-2xl border border-tealcalm-500/30 bg-slate-900 text-slate-200";
-          specialBox.innerHTML = `<div class="font-extrabold text-tealcalm-300">✓ Nhóm ngành Đại trà (Không áp điều kiện học lực Tốt)</div><div class="mt-1 text-slate-300">Áp dụng ngưỡng sàn chung 15,00 điểm/3 môn và đề án tuyển sinh riêng của từng cơ sở đào tạo.</div>`;
+          boxSpecial.className = "p-3.5 rounded-2xl border border-slate-200 bg-slate-50 text-slate-700";
+          boxSpecial.innerHTML = `<strong>• Nhóm ngành khác:</strong> Không bắt buộc điều kiện riêng mức Tốt cả năm lớp 12 như Sư phạm – Luật – Y-Dược.`;
         }
       }
 
-      // 3. Kiểm định trần điểm cộng khuyến khích 0,50/30đ
-      const bonusBox = document.getElementById("auditBonusCapBox");
-      if (bonusBox) {
-        bonusBox.className = rawBonus > 0.50
-          ? "p-3.5 rounded-2xl border border-amber-500/40 bg-amber-950/40 text-amber-200"
-          : "p-3.5 rounded-2xl border border-indigodeep-400/30 bg-slate-900 text-slate-200";
-        bonusBox.innerHTML = rawBonus > 0.50
-          ? `<div class="font-extrabold text-amber-300">! Cảnh báo Khống chế Trần Điểm Cộng 2027</div><div class="mt-1 text-slate-300">Điểm khuyến khích khai báo (<strong>${rawBonus.toFixed(2)}đ</strong>) vượt mức trần quy định. Hệ thống tự động chốt tối đa <strong>+0,50/30 điểm</strong> (và lưu ý quy định bỏ hẳn từ năm 2028).</div>`
-          : `<div class="font-extrabold text-indigodeep-300">✓ Tuân thủ Trần Điểm Cộng Khuyến Khích (≤ 0,50đ)</div><div class="mt-1 text-slate-300">Mức cộng <strong>+${appliedBonus.toFixed(2)} điểm</strong> hoàn toàn hợp lệ theo Thông tư 95/2026/TT-BGDĐT.</div>`;
+      const boxCap = document.getElementById("hbAuditCapBox");
+      if (boxCap) {
+        const capped = rawBonus > 0.50;
+        boxCap.className = capped
+          ? "p-3.5 rounded-2xl border border-amber-200 bg-amber-50 text-amber-950"
+          : "p-3.5 rounded-2xl border border-indigodeep-200 bg-indigodeep-50 text-indigodeep-950";
+        boxCap.innerHTML = capped
+          ? `<strong>! Trần điểm khuyến khích 2027 (tối đa 0,50/30 điểm):</strong> Đã tự động giới hạn từ ${rawBonus.toFixed(2)}đ xuống <strong>0,50đ</strong>.`
+          : `<strong>✓ Trần điểm khuyến khích 2027:</strong> Áp dụng <strong>+${appliedBonus.toFixed(2)}đ</strong> (trong trần tối đa 0,50/30 điểm).`;
       }
     }
 
-    function updateTranscriptChecklist() {
-      const chks = document.querySelectorAll(".tr-audit-chk");
-      const checkedCount = Array.from(chks).filter(c => c.checked).length;
-      const badge = document.getElementById("trChecklistBadge");
-      if (badge) {
-        badge.textContent = `${checkedCount} / ${chks.length} bước hoàn tất`;
-        badge.className = checkedCount === chks.length
-          ? "px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 border border-emerald-300 font-mono font-bold text-xs"
-          : "px-3 py-1 rounded-full bg-indigodeep-50 text-indigodeep-800 border border-indigodeep-200 font-mono font-bold text-xs";
-      }
-    }
-
-    /* ==================== MODULE 3: STAR ESSAY & INTERVIEW ==================== */
     const starPrompts = {
       CHALLENGE: "Đề bài: Hãy kể về một thời điểm bạn đối mặt với áp lực lớn hoặc kết quả chưa như mong đợi trong học tập lớp 11–12. Bạn đã phân tích vấn đề và hành động như thế nào để chuyển hóa tình huống đó?",
       RESEARCH: "Đề bài: Trình bày một dự án nghiên cứu khoa học kỹ thuật hoặc sáng kiến cộng đồng bạn từng tham gia. Đâu là quyết định khó khăn nhất của bạn và kết quả thực tế đạt được là gì?",
@@ -916,7 +837,6 @@
       showStudioToast("Đã sao chép bài luận STAR", "Bạn có thể dán trực tiếp vào hồ sơ xét tuyển kết hợp hoặc tài liệu luyện phỏng vấn.");
     }
 
-    /* ==================== MODULE 4: VISEF CSV EXPORTER ==================== */
     function exportVisefComparisonCsv() {
       const rows = [
         ["Chi_So_Danh_Gia", "Truoc_Can_Thiep_PreTest", "Sau_Can_Thiep_PostTest", "Muc_Do_Cai_Thien"],
@@ -938,13 +858,12 @@
       showStudioToast("Đã xuất báo cáo đối chứng ViSEF", "Tệp dữ liệu Tiền – Hậu can thiệp đã được tải về máy.");
     }
 
-    window.onload = function () {
+    window.addEventListener("DOMContentLoaded", function () {
       renderPortfolioPreview();
-      calculateTranscript2027();
-      updateTranscriptChecklist();
+      calcTranscript2027();
       evaluateStarDraft();
-      lucide.createIcons();
-    };
+      refreshIcons();
+    });
   </script>
 </body>
 </html>
